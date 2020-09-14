@@ -1,9 +1,11 @@
 require('dotenv').config();
 
-const { Client, MessageAttachment, VoiceChannel, User, GuildMember, MessageEmbed } = require("discord.js");
+const { Client, MessageAttachment, VoiceChannel, User, GuildMember, MessageEmbed, Guild } = require("discord.js");
+const guild = new Guild();
 const client = new Client();
+const memberguild = new GuildMember();
 
-client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
+client.login(process.env.DISCORDJS_WIRYATEST_TOKEN); 
 
 client.on('ready' ,() => {
 
@@ -33,7 +35,7 @@ client.on('message', async (message) => {
     };
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    if (message.content.toLowerCase() === 'cepu' && message.author.bot === false ){
+    if (message.content.toLowerCase().includes('cepu') && message.author.bot === false ){
 
        const cepu = new MessageAttachment('https://cdn.discordapp.com/attachments/748362014652367001/748380268234014811/20200827_100848.jpg');
 
@@ -71,6 +73,30 @@ ijin lewat ndan
 *cut
 *reverse`)};
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------       
+        
+       if ((command.toLowerCase() === 'nick' && args) && message.author.id === message.guild.ownerID){
+          let isGoodToGo = false;
+          let filteredIndex;
+        if ( args.length >=2 ){
+            isGoodToGo = true
+           filteredIndex = args.filter((value, index) =>{
+              
+            
+              return index >= 1
+
+          }) 
+        }
+
+         const usermention = message.mentions.members.first();
+           if (usermention && isGoodToGo){
+            
+            usermention.setNickname(filteredIndex.join(' '));
+            message.channel.send(`${usermention}'s name has been changed`)
+           }
+            
+       }
+ 
+ //----------------------------------------------------------------------------------------------------------------------------------------------------------------
         if (command.toLowerCase() === 'usir' && message.member.voice.channel){
 
            message.member.voice.channel.leave();
@@ -197,4 +223,6 @@ all - eng = *autotranslate`);
 
 
 });
+
+
 
