@@ -5,7 +5,7 @@ const guild = new Guild();
 const client = new Client();
 const memberguild = new GuildMember();
 
-client.login(process.env.DISCORDJS_WIRYATEST_TOKEN); 
+client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
 
 client.on('ready' ,() => {
 
