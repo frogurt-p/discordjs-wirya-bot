@@ -42,6 +42,13 @@ client.on('message', async (message) => {
        message.channel.send(cepu);
        message.reply('gw gk cepu ajg');
     };
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+   if (message.content.toLowerCase().includes('gelud') && message.author.bot === false ){
+    
+       message.reply('GW GABAKAL NGE GAS KALO LU GA NGE GAS DI GRUP');
+    
+    };
+
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------    
    if (message.content.toLowerCase() === 'ijin lewat ndan' && message.author.bot === false ){
 
