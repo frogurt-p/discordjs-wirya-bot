@@ -72,7 +72,8 @@ ijin lewat ndan
 *itung
 *cut
 *reverse
-*nick`)};
+*nick
+*votenick`)};
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------       
         
        if ((command.toLowerCase() === 'nick' && args) && message.author.id === message.guild.ownerID){
