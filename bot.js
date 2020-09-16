@@ -71,6 +71,7 @@ if (globalcommand){
             message.reply(`
 halo 
 pap dong wir 
+gelud
 cepu 
 ijin lewat ndan 
 *usir
