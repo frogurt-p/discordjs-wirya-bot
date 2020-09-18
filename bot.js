@@ -56,12 +56,12 @@ client.on('message', async (message) => {
    if (message.content.toLowerCase().includes('gelud') && message.author.bot === false ){
    
        const findGelud = message.content.indexOf('gelud');
-       const startIndex = findGelud - 1;
-       const endIndex = findGelud + 4;
+       const startGelud = findGelud - 1;
+       const endGelud = findGelud + 4;
     
-       const vibeCheck = (message.content.charAt(startIndex) === ' ' || message.content.charAt(startIndex) === '') && (message.content.charAt(endIndex) === ' ' || message.content.charAt(endIndex) === '')
+       const indexCheck = (message.content.charAt(startGelud) === ' ' || message.content.charAt(startGelud) === '') && (message.content.charAt(endGelud) === ' ' || message.content.charAt(endGelud) === '')
        
-       if (vibeCheck){
+       if (indexCheck){
        message.reply('GW GABAKAL NGE GAS KALO LU GA NGE GAS DI GRUP');
        }
     
