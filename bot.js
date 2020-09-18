@@ -35,17 +35,35 @@ client.on('message', async (message) => {
     };
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    if (message.content.toLowerCase().includes('cepu') && message.author.bot === false ){
+   if (message.content.toLowerCase().includes('cepu') && message.author.bot === false ){
+
+        const findCepu = message.content.indexOf('cepu');
+        const startIndex = findCepu - 1;
+        const endIndex = findCepu + 4;
+
+
+        const vibeCheck = (message.content.charAt(startIndex) === ' ' || message.content.charAt(startIndex) === '') && (message.content.charAt(endIndex) === ' ' || message.content.charAt(endIndex) === '')
+
+        if (vibeCheck){
 
        const cepu = new MessageAttachment('https://cdn.discordapp.com/attachments/748362014652367001/748380268234014811/20200827_100848.jpg');
 
        message.channel.send(cepu);
        message.reply('gw gk cepu ajg');
+        }
     };
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
    if (message.content.toLowerCase().includes('gelud') && message.author.bot === false ){
+   
+       const findGelud = message.content.indexOf('gelud');
+       const startIndex = findGelud - 1;
+       const endIndex = findGelud + 4;
     
+       const vibeCheck = (message.content.charAt(startIndex) === ' ' || message.content.charAt(startIndex) === '') && (message.content.charAt(endIndex) === ' ' || message.content.charAt(endIndex) === '')
+       
+       if (vibeCheck){
        message.reply('GW GABAKAL NGE GAS KALO LU GA NGE GAS DI GRUP');
+       }
     
     };
 
