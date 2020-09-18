@@ -57,7 +57,7 @@ client.on('message', async (message) => {
    
        const findGelud = message.content.indexOf('gelud');
        const startGelud = findGelud - 1;
-       const endGelud = findGelud + 4;
+       const endGelud = findGelud + 5;
     
        const indexCheck = (message.content.charAt(startGelud) === ' ' || message.content.charAt(startGelud) === '') && (message.content.charAt(endGelud) === ' ' || message.content.charAt(endGelud) === '')
        
