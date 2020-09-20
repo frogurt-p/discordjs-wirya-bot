@@ -99,7 +99,8 @@ ijin lewat ndan
 *cut
 *reverse
 *nick
-*votenick`)};
+*votenick
+*createemoji`)};
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------       
         
        if ((command.toLowerCase() === 'nick' && args) && message.author.id === message.guild.ownerID){
