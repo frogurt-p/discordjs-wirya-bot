@@ -192,8 +192,92 @@ ijin lewat ndan
      }
 
          }
+ //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+             if ((command.toLowerCase() === 'createemoji' && args[0]) && message.attachments.find( image => image.size < 256000)){
+            const color1 = Math.random() * 255;
+            const color2 = Math.random() * 255;
+            const color3 = Math.random() * 255;
+
+            const embed = new MessageEmbed()
+            .setDescription(`${message.author.username} mau bikin emote baru :${args[0]}: (3 menit)`)
+            .setImage(message.attachments.last().url)
+            .setColor([color1 , color2 , color3]);
+
+            const embedSuccess = new MessageEmbed()
+            .setDescription(`${message.author.username} berhasil membuat emote :${args[0]}:`)
+            .setImage(message.attachments.last().url)
+            .setColor([color1 , color2 , color3]);
+
+            const embedFailed = new MessageEmbed()
+            .setDescription(`${message.author.username} gagal membuat emote, FeelsBadMan`)
+            .setImage('https://cdn.discordapp.com/attachments/748362014652367001/757187050200891479/pepehands.jpg')
+            .setColor([color1 , color2 , color3]);
+            
+            // let firstMsg = await message.channel.send(`${message.author.username} mau bikin emote baru`);
+            let sentEmbed = await message.channel.send(embed);
+            let voted;
+            console.log(message.attachments);
+             let poolPositive = 0;
+             let poolNegative = 0;
+            
+             const filterPositive = (reaction , user) =>{ return reaction.emoji.name === '✅' && user.id }
+            const filterNegative = (reaction, user) => { return reaction.emoji.name === '❌' && user.id }
+            
+            const collectorPositive = sentEmbed.createReactionCollector(filterPositive , { time : 180000});
+            collectorPositive.options.dispose = true
+            collectorPositive.on('collect', (r , user) => {
+                poolPositive++;
+                console.log(`collected positive pool from ${user.tag} and ${poolPositive}`)});
+            collectorPositive.on('remove', (r , user)=>{
+                poolPositive--;
+                console.log(`removed positive pool from ${user.tag} and ${poolPositive}`)
+            });
+            collectorPositive.on('end', () => console.log(`${poolPositive} positive items have been collected`) );
+
+            const collectorNegative = sentEmbed.createReactionCollector(filterNegative , { time : 180000});
+            collectorNegative.options.dispose = true
+            collectorNegative.on('collect', (r , user) => {
+                poolNegative++;
+                console.log(`collected negative pool from ${user.tag} and ${poolNegative}`)});
+            collectorNegative.on('remove', (r , user)=>{
+                poolNegative--;
+                console.log(`removed positive pool from ${user.tag} and ${poolNegative}`)
+            });
+            collectorNegative.on('end', () => console.log(`${poolNegative} negative items have been collected`)  );
+            
+            
+            sentEmbed.react('✅');
+            sentEmbed.react('❌');
+
+
+        
+            setTimeout(() =>{
+                
+                if (poolPositive > poolNegative){
+
+                   voted = true;
  
- 
+                }
+
+                if (voted){
+                    const image = message.attachments.last().url;
+                    message.guild.emojis.create(image , args[0]).then((emoji) =>{
+                       sentEmbed.edit(embedSuccess.setDescription(`${message.author.username} berhasil membuat emote :${args[0]}: (${poolPositive} upvotes and ${poolNegative} downvotes)`));
+                    }).catch( (error)=>{
+                   message.channel.send(`filenya kyknya kegedean bre <256kb`);
+                    });
+                  //   console.log(message.attachments.last().url);
+                } 
+                else {
+                    sentEmbed.edit(embedFailed.setDescription(`${message.author.username} gagal membuat emote, FeelsBadMan (${poolPositive} upvotes and ${poolNegative} downvotes)`));
+                 sentEmbed.react("🇫")
+                     }
+              
+            }, 180000);
+
+
+         
+        };
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------
         if (command.toLowerCase() === 'usir' && message.member.voice.channel){
 
