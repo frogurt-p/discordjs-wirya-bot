@@ -147,7 +147,7 @@ if(command.toLowerCase() === 'instaname'){
 
      }
 
-     if ((command.toLowerCase() === 'instapload' && message.attachments.find( image => image.size < 20,971,520 )) && args[0]){
+     if ((command.toLowerCase() === 'instapload' && message.attachments.find( image => image.size < 20971520 )) && args[0]){
 
     const toBeUploadedPhoto =  message.attachments.last().url;
     // console.log(toBeUploadedPhoto);
