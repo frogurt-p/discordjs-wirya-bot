@@ -1,11 +1,11 @@
 {
-  "name": "wirya-test",
+  "name": "my-bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/bot.js"
+    "start": "node bot.js"
   },
   "keywords": [],
   "author": "",
