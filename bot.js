@@ -111,7 +111,8 @@ ijin lewat ndan
 *nick
 *votenick
 *createemoji
-*instapload,instafollow,instaunfollow,instacomment,instadelete,setpp`)};
+*instapload,instafollow,instaunfollow,instacomment,instadelete,setpp
+*maki`)};
 //INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM       
 if(command.toLowerCase() === 'instaname'){
 
@@ -495,20 +496,36 @@ all - eng = *autotranslate`);
         
 //-------------------------------------------------------------------------------Translate---------------------------------------------------------------------------------       
     
-       const umpatan = ['kontol' , 'anjing' , 'memek' , 'titit' , 'goblog' , 'bego' , 'kontit', 
-       'bangsat' , 'entot' , 'tolol' , 'idiot' , 'tai' , 'brengsek' , 
-       'monyet', 'babi' , 'anjeng' , 'bajingan' , 'geblek' , 'gila', 'kontil' , 'durjana']
-       
-       if (command.toLowerCase() === 'hina' && args[0].startsWith('<@')){
-       const replaced = args[0].replace('<@!', '').replace('>' , '').replace('<@', '')
-       let randomizednumber = Math.floor(Math.random() * 21 +  0);
+        const umpatan = ['kontol' , 'anjing' , 'memek' , 'titit' , 'goblog' , 'bego' , 'kontit', 
+        'bangsat' , 'entot' , 'tolol' , 'idiot' , 'tai' , 'brengsek' , 
+        'monyet', 'babi' , 'anjeng' , 'bajingan' , 'geblek' , 'gila', 'kontil' , 'durjana', 'peki', 'peju']
+
+        if (command.toLowerCase() === 'hina' && args[0].startsWith('<@')){
+        const replaced = args[0].replace('<@!', '').replace('>' , '').replace('<@', '')
+        let randomizednumber = Math.floor(Math.random() * 23 +  0);
         if(replaced.length === 18 && replaced != client.user.id ){
             
-            message.channel.send(`${umpatan[randomizednumber]} lo ${args}`)
-    
+            message.channel.send(`${umpatan[randomizednumber]} lo ${args.join(' ')}`)
+
         } else { message.reply('loe kira gw tolol?')};
-    
-    } else return;
+
+        
+
+        } 
+
+        if (command.toLowerCase() === 'maki' && args[0].startsWith('<@')){
+        const replaced = args[0].replace('<@!', '').replace('>' , '').replace('<@', '')
+        let randomizednumber = Math.floor(Math.random() * 23 +  0);
+        let randomizednumber2 = Math.floor(Math.random() * 23 +  0);
+        if(replaced.length === 18 && replaced != client.user.id ){
+            
+            message.channel.send(`${umpatan[randomizednumber]} ${umpatan[randomizednumber2]} lo ${args.join(' ')}`)
+
+        } else { message.reply('loe kira gw tolol?')};
+
+        
+
+        } 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
       
 } else return;
