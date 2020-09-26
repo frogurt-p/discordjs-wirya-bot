@@ -112,7 +112,7 @@ ijin lewat ndan
 *votenick
 *createemoji
 *instapload,instafollow,instaunfollow,instacomment,instadelete,setpp
-*maki`)};
+*nista`)};
 //INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM       
 if(command.toLowerCase() === 'instaname'){
 
@@ -513,7 +513,7 @@ all - eng = *autotranslate`);
 
         } 
 
-        if (command.toLowerCase() === 'maki' && args[0].startsWith('<@')){
+        if (command.toLowerCase() === 'nista' && args[0].startsWith('<@')){
         const replaced = args[0].replace('<@!', '').replace('>' , '').replace('<@', '')
         let randomizednumber = Math.floor(Math.random() * 23 +  0);
         let randomizednumber2 = Math.floor(Math.random() * 23 +  0);
