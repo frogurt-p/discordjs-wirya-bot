@@ -140,7 +140,7 @@ if(command.toLowerCase() === 'instaname'){
 
        }
 
-    if (command.toLowerCase() === 'instaprofile' && args[0]){
+    if (command.toLowerCase() === 'instaprofile' ){
        message.channel.send("https://www.instagram.com/rapiorari/");
    
     }
