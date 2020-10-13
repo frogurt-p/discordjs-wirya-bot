@@ -112,7 +112,8 @@ ijin lewat ndan
 *votenick
 *createemoji
 *instapload,instafollow,instaunfollow,instacomment,instadelete,setpp
-*nista`)};
+*nista
+*instaprofile`)};
 //INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM       
 if(command.toLowerCase() === 'instaname'){
 
@@ -138,6 +139,11 @@ if(command.toLowerCase() === 'instaname'){
 
 
        }
+
+    if (command.toLowerCase() === 'instaprofile' && args[0]){
+       message.channel.send("https://www.instagram.com/rapiorari/");
+   
+    }
 
      if (command.toLowerCase() === 'setpp' && message.attachments.find( image => image.size < 256000) ){
        const profilePic = message.attachments.last().url;
