@@ -152,7 +152,7 @@ if(command.toLowerCase() === 'instaname'){
 
     const toBeUploadedPhoto =  message.attachments.last().url;
     // console.log(toBeUploadedPhoto);
-    const uploadid = await insta.uploadPhoto({photo : toBeUploadedPhoto , caption: `${args.join(' ')} -- uploaded by ${message.author.username} from RAPI ORARI` , post : 'feed'})
+    const uploadid = await insta.uploadPhoto({photo : toBeUploadedPhoto , caption: `${args.join(' ')} -- uploaded by ${message.author.username} from ${message.guild.name}` , post : 'feed'})
     .then( (res) => {console.log(res)
         message.channel.send(`https://www.instagram.com/p/${res.media.code}/`);
         message.channel.send(`ID : ${res.media.id}`);
@@ -205,7 +205,7 @@ if(command.toLowerCase() === 'instaname'){
         const numberOne = args.filter((value, index) =>{
          return index >= 1})
      
-        const addKomentar = await insta.addComment({ mediaId : args[0] , text : `${numberOne.join(' ')}-- Sent from RAPI` })
+        const addKomentar = await insta.addComment({ mediaId : args[0] , text : `${numberOne.join(' ')}-- Sent from ${message.guild.name}` })
         .then(() => message.channel.send(`komentar berhasil "${numberOne.join(' ')}"`))
         .catch( err => {console.error(err); message.channel.send('ad yg salah bre');} )
 
