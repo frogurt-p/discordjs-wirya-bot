@@ -318,7 +318,7 @@ if(command.toLowerCase() === 'instaname'){
             const color3 = Math.random() * 255;
 
             const embed = new MessageEmbed()
-            .setDescription(`${message.author.username} mau bikin emote baru :${args[0]}: (3 menit)`)
+            .setDescription(`${message.author.username} mau bikin emote baru :${args[0]}: (1 menit)`)
             .setImage(message.attachments.last().url)
             .setColor([color1 , color2 , color3]);
 
@@ -342,7 +342,7 @@ if(command.toLowerCase() === 'instaname'){
              const filterPositive = (reaction , user) =>{ return reaction.emoji.name === '✅' && user.id }
             const filterNegative = (reaction, user) => { return reaction.emoji.name === '❌' && user.id }
             
-            const collectorPositive = sentEmbed.createReactionCollector(filterPositive , { time : 180000});
+            const collectorPositive = sentEmbed.createReactionCollector(filterPositive , { time : 60000});
             collectorPositive.options.dispose = true
             collectorPositive.on('collect', (r , user) => {
                 poolPositive++;
@@ -353,7 +353,7 @@ if(command.toLowerCase() === 'instaname'){
             });
             collectorPositive.on('end', () => console.log(`${poolPositive} positive items have been collected`) );
 
-            const collectorNegative = sentEmbed.createReactionCollector(filterNegative , { time : 180000});
+            const collectorNegative = sentEmbed.createReactionCollector(filterNegative , { time : 60000});
             collectorNegative.options.dispose = true
             collectorNegative.on('collect', (r , user) => {
                 poolNegative++;
@@ -383,7 +383,7 @@ if(command.toLowerCase() === 'instaname'){
                     message.guild.emojis.create(image , args[0]).then((emoji) =>{
                        sentEmbed.edit(embedSuccess.setDescription(`${message.author.username} berhasil membuat emote :${args[0]}: (${poolPositive} upvotes and ${poolNegative} downvotes)`));
                     }).catch( (error)=>{
-                   message.channel.send(`filenya kyknya kegedean bre <256kb`);
+                   message.channel.send(`filenya kyknya kegedean bre <256kb / jangan pake special character ya bre`);
                     });
                   //   console.log(message.attachments.last().url);
                 } 
@@ -392,7 +392,7 @@ if(command.toLowerCase() === 'instaname'){
                  sentEmbed.react("🇫")
                      }
               
-            }, 180000);
+            }, 60000);
 
 
          
