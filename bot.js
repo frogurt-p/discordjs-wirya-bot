@@ -255,7 +255,7 @@ if(command.toLowerCase() === 'instaname'){
                      const  guildName = await client.guilds.cache.find(server => server.name.toLowerCase().startsWith(arizona.toLowerCase()));
                      const targetChannel = await guildName.channels.cache.find( key => key.type === 'text' );
                      // const targetChannel = await client.guilds.cache.first().channels.cache.find( key => key.name === 'general' );
-                     targetChannel.send(`${filteredIndex.join(' ')} -- dikirim dri  ${message.guild.name} oleh ${message.author} brE `);
+                     targetChannel.send(filteredIndex.join(' '));
                      message.channel.send('berhasil mengirim msg');
                      
                          
