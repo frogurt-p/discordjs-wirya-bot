@@ -113,7 +113,8 @@ ijin lewat ndan
 *createemoji
 *instapload,instafollow,instaunfollow,instacomment,instadelete,setpp
 *nista
-*instaprofile`)};
+*instaprofile
+*portal`)};
 //INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM       
 if(command.toLowerCase() === 'instaname'){
 
@@ -242,6 +243,27 @@ if(command.toLowerCase() === 'instaname'){
            }
             
        }
+
+
+       if ((command.toLowerCase() == 'portal' && args[0]) && args[1]){
+        
+        const filteredIndex = args.filter((value, index) =>{
+             return index >= 1
+         })
+                 const arizona = args[0];
+                 try {
+                     const  guildName = await client.guilds.cache.find(server => server.name.toLowerCase().startsWith(arizona.toLowerCase()));
+                     const targetChannel = await guildName.channels.cache.find( key => key.name === 'general' );
+                     // const targetChannel = await client.guilds.cache.first().channels.cache.find( key => key.name === 'general' );
+                     targetChannel.send(`${filteredIndex.join(' ')} -- dikirim dri  ${message.guild.name} oleh ${message.author} brE `);
+                     message.channel.send('berhasil mengirim msg');
+                     
+                         
+                 } catch (err) {
+                     message.channel.send('sorry bre ad yg salah');
+                     
+                 }
+        }
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------
      if (command.toLowerCase() === 'votenick' && args){
 
