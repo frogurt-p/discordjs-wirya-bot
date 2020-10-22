@@ -23,6 +23,30 @@ client.on('ready' ,() => {
 
 });
 
+client.on("voiceStateUpdate", async (leaveState, joinState ) => {
+
+    
+    if(joinState.channel){
+ if(!joinState.guild.channels.cache.find((key) => key.name === `${joinState.channel.name}-chatroom`)  ){
+  
+  const ferdiChannel = await joinState.guild.channels.create(`${joinState.channel.name}-chatroom` , { type: 'text'  });
+
+   }
+  }
+
+   if(leaveState.channel){
+ if(!leaveState.channel.members.find((key) => key.user ) ){
+       
+      leaveState.guild.channels.cache.find((key) => key.name === `${leaveState.channel.name}-chatroom` ).delete()}
+   }
+
+
+   
+       if(joinState.channel){console.log(`he joined ${joinState.channelID}`)}
+       if(leaveState.channel){console.log(`he left ${leaveState.channelID}`)}
+       
+});
+
 
     const prefix = "*";
      
