@@ -139,7 +139,7 @@ ijin lewat ndan
 *nick
 *votenick
 *createemoji
-*instapload,instafollow,instaunfollow,instacomment,instadelete,setpp,instastatus
+*instapload,instafollow,instaunfollow,instacomment,instadelete,setpp,instatus
 *nista
 *instaprofile
 *portal`)};
@@ -151,7 +151,7 @@ if(command.toLowerCase() === 'instaname'){
 
      }
 
-     if(command.toLowerCase() === 'instastatus'){
+     if(command.toLowerCase() === 'instatus'){
  
         if (status)
         message.channel.send('initialized');
