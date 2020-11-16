@@ -4,6 +4,7 @@ const Instagram = require('instagram-web-api');
 const instaUser = process.env.INSTAGRAM_USERNAME;
 const instaPass = process.env.INSTAGRAM_PASSWORD;
 const insta = new Instagram({username : instaUser, password : instaPass});
+let status = false;
 
 const { Client, MessageAttachment, VoiceChannel, User, GuildMember, MessageEmbed, Guild } = require("discord.js");
 const guild = new Guild();
@@ -14,6 +15,7 @@ client.login(process.env.DISCORDJS_WIRYA_TOKEN);
 
 insta.login().then( () => {
     insta.getProfile().then( (profile) => {
+        status = true;
         console.log('instagram initialized')})
     .catch( (profile) => console.log('login failed') );
 
@@ -137,7 +139,7 @@ ijin lewat ndan
 *nick
 *votenick
 *createemoji
-*instapload,instafollow,instaunfollow,instacomment,instadelete,setpp
+*instapload,instafollow,instaunfollow,instacomment,instadelete,setpp,instastatus
 *nista
 *instaprofile
 *portal`)};
@@ -148,6 +150,16 @@ if(command.toLowerCase() === 'instaname'){
     
 
      }
+
+     if(command.toLowerCase() === 'instastatus'){
+ 
+        if (status)
+        message.channel.send('initialized');
+        else
+        message.channel.send('error');
+        
+    
+         }
 
      if (command.toLowerCase() === 'changename' && args[0]){
 
