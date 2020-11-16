@@ -14,8 +14,9 @@ client.login(process.env.DISCORDJS_WIRYA_TOKEN);
 
 insta.login().then( () => {
     insta.getProfile().then( (profile) => console.log('instagram initialized'))
+    .catch( (profile) => console.log('login failed') );
 
-});
+}).catch( (err) => console.log('something went wrong 2') );
 
 client.on('ready' ,() => {
 
