@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const Instagram = require('instagram-web-api');
+let instaStatus = false;
 const instaUser = process.env.INSTAGRAM_USERNAME;
 const instaPass = process.env.INSTAGRAM_PASSWORD;
 const insta = new Instagram({username : instaUser, password : instaPass});
@@ -13,7 +14,9 @@ const memberguild = new GuildMember();
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
 
 insta.login().then( () => {
-    insta.getProfile().then( (profile) => console.log('instagram initialized'))
+    insta.getProfile().then( (profile) => {
+        let instaStatus = true;
+        console.log('instagram initialized')})
     .catch( (profile) => console.log('login failed') );
 
 }).catch( (err) => console.log('something went wrong 2') );
@@ -147,6 +150,18 @@ if(command.toLowerCase() === 'instaname'){
     
 
      }
+
+     if(command.toLowerCase() === 'instastatus'){
+
+        if(instaStatus)
+        const statusMessage = "login success";
+        else
+        const statusMessage = "login failed";
+
+        message.channel.send(statusMessage);
+        
+    
+         }
 
      if (command.toLowerCase() === 'changename' && args[0]){
 
