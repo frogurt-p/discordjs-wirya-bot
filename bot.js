@@ -32,8 +32,10 @@ client.on("voiceStateUpdate", async (leaveState, joinState ) => {
     
     if(joinState.channel){
  if(!joinState.guild.channels.cache.find((key) => key.name === `${joinState.channel.name}-chatroom`)  ){
+
+    const parentChannel = joinState.guild.channels.cache.find((key) => key.type === 'category');
   
-  const ferdiChannel = await joinState.guild.channels.create(`${joinState.channel.name}-chatroom` , { type: 'text'  });
+  const ferdiChannel = await joinState.guild.channels.create(`${joinState.channel.name}-chatroom` , { type: 'text', parent: parentChannel  });
 
    }
   }
