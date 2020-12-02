@@ -31,7 +31,7 @@ client.on("voiceStateUpdate", async (leaveState, joinState ) => {
 
     
     if(joinState.channel){
- if(!joinState.guild.channels.cache.find((key) => key.name === `${joinState.channel.name}-chatroom`)  ){
+ if(!joinState.guild.channels.cache.find((key) => key.name === `${joinState.channel.name.toLowerCase().replace(' ', '-')}-chatroom`)  ){
 
     const parentChannel = joinState.guild.channels.cache.find((key) => key.type === 'category');
   
