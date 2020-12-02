@@ -43,7 +43,7 @@ client.on("voiceStateUpdate", async (leaveState, joinState ) => {
    if(leaveState.channel){
  if(!leaveState.channel.members.find((key) => key.user ) ){
        
-      leaveState.guild.channels.cache.find((key) => key.name === `${leaveState.channel.name}-chatroom` ).delete()}
+    leaveState.guild.channels.cache.find((key) => key.name === `${leaveState.channel.name.toLowerCase().replace(' ', '-')}-chatroom` ).delete()}
    }
 
 
