@@ -293,7 +293,6 @@ if(command.toLowerCase() === 'instaname'){
         .filter((filter) => filter.type === 'voice')
         .find((filtered) => filtered.name.toLowerCase() === args.join(' '));
 
-        console.log(markedchannel);
 
          try {
             connection = await markedchannel.join();
@@ -318,9 +317,7 @@ if(command.toLowerCase() === 'instaname'){
               markedchannel.leave()
           }, 18000);
         
-   
-       
-    
+          
     };
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
