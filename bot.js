@@ -10,6 +10,7 @@ const { Client, MessageAttachment, VoiceChannel, User, GuildMember, MessageEmbed
 const guild = new Guild();
 const client = new Client();
 const memberguild = new GuildMember();
+const ytdl = require('ytdl-core');
 
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
 
@@ -283,7 +284,45 @@ if(command.toLowerCase() === 'instaname'){
            }
             
        }
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       if (command.toLowerCase() === 'raung' && args ){
 
+ 
+        let connection;
+        const markedchannel = message.guild.channels.cache
+        .filter((filter) => filter.type === 'voice')
+        .find((filtered) => filtered.name.toLowerCase() === args.join(' '));
+
+        console.log(markedchannel);
+
+         try {
+            connection = await markedchannel.join();
+         } catch (error) {
+             message.channel.send('gk ada channelnya bre')
+             return
+         }
+             
+        
+
+            try {
+                connection.play(ytdl('https://www.youtube.com/watch?v=tkiFrI072f0', { filter: 'audioonly' , quality: 'highestaudio' }))
+                
+            } catch (error) {
+                markedchannel.leave();
+                message.channel.send('ada yg salah bre')
+                console.log(error);
+                return   
+            }
+            
+          setTimeout(() => {
+              markedchannel.leave()
+          }, 18000);
+        
+   
+       
+    
+    };
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
        if ((command.toLowerCase() == 'portal' && args[0]) && args[1]){
         
