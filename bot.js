@@ -291,7 +291,7 @@ if(command.toLowerCase() === 'instaname'){
         let connection;
         const markedchannel = message.guild.channels.cache
         .filter((filter) => filter.type === 'voice')
-        .find((filtered) => filtered.name.toLowerCase() === args.join(' '));
+        .find((filtered) => filtered.name.toLowerCase() === args.join(' ').toLowerCase());
 
 
          try {
