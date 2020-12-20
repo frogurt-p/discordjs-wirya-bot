@@ -11,6 +11,7 @@ const guild = new Guild();
 const client = new Client();
 const memberguild = new GuildMember();
 const ytdl = require('ytdl-core');
+const discytdl = require('discord-ytdl-core');
 
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
 
@@ -317,6 +318,48 @@ if(command.toLowerCase() === 'instaname'){
               markedchannel.leave()
           }, 18000);
         
+          
+    };
+
+    if (command.toLowerCase() === 'tahantahan' && args ){
+
+ 
+        let connection;
+        const markedchannel = message.guild.channels.cache
+        .filter((filter) => filter.type === 'voice')
+        .find((filtered) => filtered.name.toLowerCase() === args.join(' ').toLowerCase());
+
+
+         try {
+            connection = await markedchannel.join();
+         } catch (error) {
+             message.channel.send('gk ada channelnya bre')
+             return
+         }
+             
+        
+
+         try {
+
+            let stream = discytdl("https://youtu.be/F314suqCA1c", {
+        filter: "audioonly",
+        opusEncoded: true,
+        encoderArgs: ['-af', 'rubberband=pitch=2'] });
+
+        markedchannel.join()
+        .then(connection => {  
+            let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+        })
+       
+    
+            
+        } catch (error) {
+            markedchannel.leave();
+            message.channel.send('ada yg salah bre')
+            console.log(error);
+            return   
+        }
+            
           
     };
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
