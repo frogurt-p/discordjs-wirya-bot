@@ -12,11 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "@vitalets/google-translate-api": "^4.0.0",
+    "discord-ytdl-core": "^5.0.0",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
+    "ffmpeg": "0.0.4",
     "fs": "0.0.1-security",
     "instagram-web-api": "^2.2.2",
     "opusscript": "0.0.7",
-    "ytdl-core": "^4.1.4"
+    "ytdl-core": "^4.2.1"
   }
 }
