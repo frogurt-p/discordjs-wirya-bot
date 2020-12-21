@@ -373,7 +373,7 @@ if(command.toLowerCase() === 'instaname'){
 
             switch (command.toLowerCase()) {
                 case 'highpitch':
-                    HighPitch();
+                    console.log('si');
                     break;
 
                 case 'lowpitch':
@@ -430,47 +430,7 @@ if(command.toLowerCase() === 'instaname'){
         
     }
 
-    async function HighPitch(params) {
-
-        const markedchannel = message.member.voice.channel;
-       const title = args.join();
-    let searchResult;
-    let url;
-       try {
-
-         searchResult = await searcher.search(title);
-         url = searchResult.first.url;
-        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in high pitch`);
-
-       } catch (error) {
-           message.channel.send('ad yg salah mencari videonya bre')
-       }
-       
-
-       try {
-
-        let stream = ytdl(url, {
-    filter: "audioonly",
-    opusEncoded: true,
-    encoderArgs: ['-af', 'rubberband=pitch=1.2'] });
-
-    markedchannel.join()
-    .then(connection => {  
-        let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
-    })
    
-
-        
-    } catch (error) {
-        markedchannel.leave();
-        message.channel.send('ada yg salah saat memutar video sepertinya bre')
-        console.log(error);
-        return   
-    }
-
-      
-        
-    }
 
     async function Reverse(params) {
 
