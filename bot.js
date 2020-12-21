@@ -410,7 +410,7 @@ if(command.toLowerCase() === 'instaname'){
         let stream = ytdl(url, {
     filter: "audioonly",
     opusEncoded: true,
-    encoderArgs: ['-af', 'rubberband=pitch=0.8'] });
+    encoderArgs: [ 'rubberband=pitch=0.8'] });
 
     markedchannel.join()
     .then(connection => {  
