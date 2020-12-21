@@ -149,7 +149,8 @@ ijin lewat ndan
 *instapload,instafollow,instaunfollow,instacomment,instadelete,setpp,instatus
 *nista
 *instaprofile
-*portal`)};
+*portal
+*lowpitch / highpitch /reverseaudio`)};
 //INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM       
 if(command.toLowerCase() === 'instaname'){
 
