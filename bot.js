@@ -407,7 +407,7 @@ if(command.toLowerCase() === 'instaname'){
 
        try {
 
-        let stream = ytdl(url, {
+        let stream = discytdl(url, {
     filter: "audioonly",
     opusEncoded: true,
     encoderArgs: [ 'rubberband=pitch=0.8'] });
@@ -451,7 +451,7 @@ if(command.toLowerCase() === 'instaname'){
 
        try {
 
-        let stream = ytdl(url, {
+        let stream = discytdl(url, {
     filter: "audioonly",
     opusEncoded: true,
     encoderArgs: ['-af', 'areverse'] });
