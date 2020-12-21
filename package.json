@@ -19,6 +19,7 @@
     "fs": "0.0.1-security",
     "instagram-web-api": "^2.2.2",
     "opusscript": "0.0.7",
-    "ytdl-core": "^4.2.1"
+    "ytdl-core": "^4.2.1",
+    "ytsearcher": "^1.2.3"
   }
 }

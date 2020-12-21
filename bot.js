@@ -3,6 +3,7 @@ require('dotenv').config();
 const Instagram = require('instagram-web-api');
 const instaUser = process.env.INSTAGRAM_USERNAME;
 const instaPass = process.env.INSTAGRAM_PASSWORD;
+const apiKey = process.env.API_KEY;
 const insta = new Instagram({username : instaUser, password : instaPass});
 let status = false;
 
@@ -11,6 +12,8 @@ const guild = new Guild();
 const client = new Client();
 const memberguild = new GuildMember();
 const ytdl = require('ytdl-core');
+const { YTSearcher } = require('ytsearcher');
+const searcher = new YTSearcher(apiKey);
 const discytdl = require('discord-ytdl-core');
 
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
@@ -362,6 +365,170 @@ if(command.toLowerCase() === 'instaname'){
             
           
     };
+
+    if ((command.toLowerCase() === 'highpitch' || command.toLowerCase() === 'lowpitch' || command.toLowerCase() === 'reverseaudio') && args[0] ){
+
+        if(message.member.voice.channel){
+
+            switch (command.toLowerCase()) {
+                case 'highpitch':
+                    HighPitch();
+                    break;
+
+                case 'lowpitch':
+                   LowPitch();
+                    break;
+
+                case 'reverseaudio':
+                Reverse();
+                break;
+            
+                default:
+                    break;
+            }
+
+   async function LowPitch(params) {
+
+        const markedchannel = message.member.voice.channel;
+       const title = args.join();
+    let searchResult;
+    let url;
+       try {
+
+         searchResult = await searcher.search(title);
+         url = searchResult.first.url;
+        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in low pitch`);
+
+       } catch (error) {
+           message.channel.send('ad yg salah mencari videonya bre')
+       }
+       
+
+       try {
+
+        let stream = ytdl(url, {
+    filter: "audioonly",
+    opusEncoded: true,
+    encoderArgs: ['-af', 'rubberband=pitch=0.8'] });
+
+    markedchannel.join()
+    .then(connection => {  
+        let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+    })
+   
+
+        
+    } catch (error) {
+        markedchannel.leave();
+        message.channel.send('ada yg salah saat memutar video sepertinya bre')
+        console.log(error);
+        return   
+    }
+
+      
+        
+    }
+
+    async function HighPitch(params) {
+
+        const markedchannel = message.member.voice.channel;
+       const title = args.join();
+    let searchResult;
+    let url;
+       try {
+
+         searchResult = await searcher.search(title);
+         url = searchResult.first.url;
+        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in high pitch`);
+
+       } catch (error) {
+           message.channel.send('ad yg salah mencari videonya bre')
+       }
+       
+
+       try {
+
+        let stream = ytdl(url, {
+    filter: "audioonly",
+    opusEncoded: true,
+    encoderArgs: ['-af', 'rubberband=pitch=1.2'] });
+
+    markedchannel.join()
+    .then(connection => {  
+        let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+    })
+   
+
+        
+    } catch (error) {
+        markedchannel.leave();
+        message.channel.send('ada yg salah saat memutar video sepertinya bre')
+        console.log(error);
+        return   
+    }
+
+      
+        
+    }
+
+    async function Reverse(params) {
+
+        const markedchannel = message.member.voice.channel;
+       const title = args.join();
+    let searchResult;
+    let url;
+       try {
+
+         searchResult = await searcher.search(title);
+         url = searchResult.first.url;
+        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in reverse`);
+
+       } catch (error) {
+           message.channel.send('ad yg salah mencari videonya bre')
+       }
+       
+
+       try {
+
+        let stream = ytdl(url, {
+    filter: "audioonly",
+    opusEncoded: true,
+    encoderArgs: ['-af', 'areverse'] });
+
+    markedchannel.join()
+    .then(connection => {  
+        let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+    })
+   
+
+        
+    } catch (error) {
+        markedchannel.leave();
+        message.channel.send('ada yg salah saat memutar video sepertinya bre')
+        console.log(error);
+        return   
+    }
+
+      
+        
+    }
+
+
+   }else message.channel.send('tolong masuk channel dulu ya bre')
+       
+       
+
+    
+    } else if(command.toLowerCase() === 'highpitch' || command.toLowerCase() === 'lowpitch')
+      message.channel.send('tolong masukan judul ya bre')
+
+    if(command.toLowerCase() === 'usir'){
+        if(message.member.voice.channel)
+           message.member.voice.channel.leave();
+        else message.channel.send('gw lg gk di dalem channel nih bre!')
+
+
+    }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
        if ((command.toLowerCase() == 'portal' && args[0]) && args[1]){
