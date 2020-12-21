@@ -410,7 +410,7 @@ if(command.toLowerCase() === 'instaname'){
         let stream = discytdl(url, {
     filter: "audioonly",
     opusEncoded: true,
-    encoderArgs: [ 'rubberband=pitch=0.8'] });
+    encoderArgs: ['-af', 'rubberband=pitch=0.8'] });
 
     markedchannel.join()
     .then(connection => {  
