@@ -634,7 +634,7 @@ if(command.toLowerCase() === 'instaname'){
 
          }
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-             if ((command.toLowerCase() === 'createemoji' && args[0]) && message.attachments.find( image => image.size < 1000000)){
+             if ((command.toLowerCase() === 'createemoji' && args[0]) && message.attachments.find( image => image.size < 10000000)){
             const color1 = Math.random() * 255;
             const color2 = Math.random() * 255;
             const color3 = Math.random() * 255;
