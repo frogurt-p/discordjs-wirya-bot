@@ -150,7 +150,7 @@ ijin lewat ndan
 *nista
 *instaprofile
 *portal
-*lowpitch / highpitch /reverseaudio`)};
+*lowpitch / highpitch /reverseaudio / ytsearch`)};
 //INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM       
 if(command.toLowerCase() === 'instaname'){
 
@@ -522,6 +522,19 @@ if(command.toLowerCase() === 'instaname'){
     
     } else if(command.toLowerCase() === 'highpitch' || command.toLowerCase() === 'lowpitch')
       message.channel.send('tolong masukan judul ya bre')
+
+    if(command.toLowerCase() === 'ytsearch'){
+        const title = args.join();
+        try {
+         const searchResult = await searcher.search(title);
+         
+         message.channel.send(`Ini bre URLnya : ${searchResult.first.url}`)
+        } catch (error) {
+            console.log(error);
+            message.channel.send('sorry bre kyknya ada yg salah bre')
+            
+        }
+     }
 
     if(command.toLowerCase() === 'usir'){
         if(message.member.voice.channel)
