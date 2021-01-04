@@ -36,7 +36,7 @@ client.on("voiceStateUpdate", async (leaveState, joinState ) => {
 
     
     if(joinState.channel){
- if(!joinState.guild.channels.cache.find((key) => key.name === `${joinState.channel.name.toLowerCase().replace(' ', '-')}-chatroom`)  ){
+ if(!joinState.guild.channels.cache.find((key) => key.name === `${joinState.channel.name.toLowerCase().replace(/ /g, '-')}-chatroom`)  ){
 
     const parentChannel = joinState.guild.channels.cache.find((key) => key.type === 'category');
   
@@ -48,7 +48,7 @@ client.on("voiceStateUpdate", async (leaveState, joinState ) => {
    if(leaveState.channel){
  if(!leaveState.channel.members.find((key) => key.user ) ){
        
-    leaveState.guild.channels.cache.find((key) => key.name === `${leaveState.channel.name.toLowerCase().replace(' ', '-')}-chatroom` ).delete()}
+    leaveState.guild.channels.cache.find((key) => key.name === `${leaveState.channel.name.toLowerCase().replace(/ /g, '-')}-chatroom` ).delete()}
    }
 
 
