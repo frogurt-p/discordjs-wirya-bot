@@ -78,6 +78,34 @@ client.on('message', async (message) => {
         const pap = new MessageAttachment('https://cdn.discordapp.com/attachments/426214215750254604/748890227904610476/Screenshot_2020-07-07-22-58-46-89.jpg');
         message.channel.send(pap);
     };
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    if (message.content.toLowerCase().startsWith('bouncytuan') && message.author.bot === false ) {
+        const splitmsg = message.content.split(' ')
+        var numbah = 0;
+        for(i = 0; i < splitmsg.length; i++){
+
+            if(splitmsg[i].toLowerCase() === 'bouncytuan'){
+
+                numbah++
+
+            }
+
+            
+        }
+        console.log(numbah);
+        console.log(splitmsg);
+
+        const pap = new MessageAttachment('https://cdn.discordapp.com/attachments/426214215750254604/797392501472100352/bouncy_tuan.gif');
+        if(numbah > 0)
+
+        for(i = 0; i < numbah; i++){
+
+            message.channel.send(pap);
+            
+        }else
+        message.channel.send('bouncytuan yg bener bre!')
+        
+    };
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
    if (message.content.toLowerCase().includes('cepu') && message.author.bot === false ){
@@ -136,6 +164,7 @@ halo
 pap dong wir 
 gelud
 cepu 
+bouncytuan
 ijin lewat ndan 
 *usir
 *hina
