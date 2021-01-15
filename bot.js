@@ -1,12 +1,7 @@
 require('dotenv').config();
 
 const Instagram = require('instagram-web-api');
-const instaUser = process.env.INSTAGRAM_USERNAME;
-const instaPass = process.env.INSTAGRAM_PASSWORD;
 const apiKey = process.env.API_KEY;
-const insta = new Instagram({username : instaUser, password : instaPass});
-let status = false;
-
 const { Client, MessageAttachment, VoiceChannel, User, GuildMember, MessageEmbed, Guild } = require("discord.js");
 const guild = new Guild();
 const client = new Client();
@@ -17,14 +12,6 @@ const searcher = new YTSearcher(apiKey);
 const discytdl = require('discord-ytdl-core');
 
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
-
-insta.login().then( () => {
-    insta.getProfile().then( (profile) => {
-        status = true;
-        console.log('instagram initialized')})
-    .catch( (profile) => console.log('login failed') );
-
-}).catch( (err) => console.log('something went wrong 2') );
 
 client.on('ready' ,() => {
 
@@ -175,126 +162,10 @@ ijin lewat ndan
 *nick
 *votenick
 *createemoji
-*instapload,instafollow,instaunfollow,instacomment,instadelete,setpp,instatus
 *nista
 *instaprofile
 *portal
 *lowpitch / highpitch /reverseaudio / ytsearch`)};
-//INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM       
-if(command.toLowerCase() === 'instaname'){
-
-    const nama = await insta.getProfile().then( (profile) => message.channel.send(profile.first_name) );
-    
-
-     }
-
-     if(command.toLowerCase() === 'instatus'){
- 
-        if (status)
-        message.channel.send('initialized');
-        else
-        message.channel.send('error');
-        
-    
-         }
-
-     if (command.toLowerCase() === 'changename' && args[0]){
-
-      const changedname = await insta.updateProfile({name : `${args[0]} ${args[1]}` })
-      .then( () => message.channel.send(`ganti nama berhasil ke ${args[0]} ${args[1]}`))
-      .catch( err => console.log(err));
-
-
-     }
-
-     if (command.toLowerCase() === 'changebio' && args[0]){
-
-        const changedname = await insta.updateProfile({biography : `${args.join(' ')}` })
-        .then( () => message.channel.send(`ganti bio berhasil ke ${args.join(' ')}`))
-        .catch( err => console.log(err));
-
-
-       }
-
-    if (command.toLowerCase() === 'instaprofile' ){
-       message.channel.send("https://www.instagram.com/rapiorari/");
-   
-    }
-
-     if (command.toLowerCase() === 'setpp' && message.attachments.find( image => image.size < 256000) ){
-       const profilePic = message.attachments.last().url;
-       const peepee = await insta.changeProfilePhoto({photo : profilePic})
-       .then( () => message.channel.send('setpp successful'))
-       .catch( (err) => console.error(err));
-
-
-     }
-
-     if ((command.toLowerCase() === 'instapload' && message.attachments.find( image => image.size < 20971520 )) && args[0]){
-
-    const toBeUploadedPhoto =  message.attachments.last().url;
-    // console.log(toBeUploadedPhoto);
-    const uploadid = await insta.uploadPhoto({photo : toBeUploadedPhoto , caption: `${args.join(' ')} -- uploaded by ${message.author.username} from ${message.guild.name}` , post : 'feed'})
-    .then( (res) => {console.log(res)
-        message.channel.send(`https://www.instagram.com/p/${res.media.code}/`);
-        message.channel.send(`ID : ${res.media.id}`);
-     })
-    .catch( err => console.error(err));
-
-
-     }
-
-     if (command.toLowerCase() === 'instadelete' && args[0] ){
-
-      const postId = args[0];
-      const deletePost = await insta.deleteMedia({ mediaId : postId})
-      .then( res =>{ console.log(res);
-           message.channel.send('post deleted');
-      })
-      .catch( err => console.error(err));
-
-
-     }
-
-     if (command.toLowerCase() === 'instafollow' && args[0]){
-    const followUser = args[0];
-        const getUserId = await insta.getUserByUsername({ username : followUser})
-        .then( (result)=> {
-        const acquiredId = result.id;
-        insta.follow({userId : acquiredId })})
-        .then( message.channel.send(`followed ${args[0]}`))
-        .catch( (err) => {console.log(err); message.channel.send('ad yg slh bre')});
-
-    
-    
-     }
-
-    if (command.toLowerCase() === 'instaunfollow' && args[0]){
-    const unfollowUser = args[0];
-        const getUserId = await insta.getUserByUsername({ username : unfollowUser})
-        .then( (result)=> {
-        const acquiredId = result.id;
-        insta.unfollow({userId : acquiredId })})
-        .then( message.channel.send(`unfollowed ${args[0]}`))
-        .catch( (err) => {console.log(err); message.channel.send('ad yg slh bre')});
-
-    
-    
-    }
-
-    if (command.toLowerCase() === 'instacomment' && args[0]){
-
-        const numberOne = args.filter((value, index) =>{
-         return index >= 1})
-     
-        const addKomentar = await insta.addComment({ mediaId : args[0] , text : `${numberOne.join(' ')}-- Sent from ${message.guild.name}` })
-        .then(() => message.channel.send(`komentar berhasil "${numberOne.join(' ')}"`))
-        .catch( err => {console.error(err); message.channel.send('ad yg salah bre');} )
-
-
-
-    }
-//INSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAMINSTAGRAM
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------       
         
        if ((command.toLowerCase() === 'nick' && args) && message.author.id === message.guild.ownerID){
