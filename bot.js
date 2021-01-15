@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-const Instagram = require('instagram-web-api');
 const apiKey = process.env.API_KEY;
 const { Client, MessageAttachment, VoiceChannel, User, GuildMember, MessageEmbed, Guild } = require("discord.js");
 const guild = new Guild();
