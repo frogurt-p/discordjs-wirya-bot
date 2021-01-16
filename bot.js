@@ -271,28 +271,81 @@ ijin lewat ndan
           
     };
 
-    if ((command.toLowerCase() === 'highpitch' || command.toLowerCase() === 'lowpitch' || command.toLowerCase() === 'reverseaudio') && args[0] ){
+    if((command.toLowerCase() === 'sethighpitch' || command.toLowerCase() === 'setlowpitch') && args){
+        switch (command.toLowerCase()) {
+            case 'sethighpitch':
+                HighPitch();
+                break;
 
+            case 'setlowpitch':
+                LowPitch();
+                break;
+    
+            default:
+                break;
+        }
+
+ async function HighPitch(){
+
+        var fl;
+        try {
+           fl = parseFloat(args[0]).toFixed(1);
+       } catch (error) {
+           message.channel.send('masukkan angka diantara 1.2 sampai 2.5 ya bre')
+       }
+
+       if(fl > 1.1 && fl < 2.6){
+       floatHighPitch = fl;
+        message.channel.send(`Pitch tinggi berhasil diubah ke ${fl} (default 1.2)`)
+
+       }else message.channel.send('masukkan angka diantara 1.2 sampai 2.5 ya bre');
+       
+    }
+
+async function LowPitch(){
+
+    var fl;
+    try {
+        fl = parseFloat(args[0]).toFixed(1);
+    } catch (error) {
+        message.channel.send('masukkan angka diantara 0.2 sampai 0.8 ya bre')
+    }
+
+    if(fl > 0.1 && fl < 0.9){
+    floatLowPitch = fl;
+    message.channel.send(`Pitch rendah berhasil diubah ke ${fl} (default 0.8)`)
+
+    }else message.channel.send('masukkan angka diantara 0.2 sampai 0.8 ya bre');
+    
+}
+        
+
+    }  
+
+    if ((command.toLowerCase() === 'highpitch' || command.toLowerCase() === 'lowpitch' || command.toLowerCase() === 'reverseaudio') && args[0] ){
         if(message.member.voice.channel){
 
             switch (command.toLowerCase()) {
                 case 'highpitch':
-                    HighPitch();
+                    
+                    PlaySound(`rubberband=pitch=${floatHighPitch}`, 'high pitch')
                     break;
 
                 case 'lowpitch':
-                   LowPitch();
+                   
+                    PlaySound(`rubberband=pitch=${floatLowPitch}`, 'low pitch')
                     break;
 
                 case 'reverseaudio':
-                Reverse();
+            
+                PlaySound('areverse', 'reverse')
                 break;
             
                 default:
                     break;
             }
 
-   async function LowPitch(params) {
+    async function PlaySound(param , identifierJudul) {
 
         const markedchannel = message.member.voice.channel;
        const title = args.join();
@@ -302,7 +355,7 @@ ijin lewat ndan
 
          searchResult = await searcher.search(title);
          url = searchResult.first.url;
-        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in low pitch`);
+        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in ${identifierJudul}`);
 
        } catch (error) {
            message.channel.send('ad yg salah mencari videonya bre')
@@ -311,10 +364,10 @@ ijin lewat ndan
 
        try {
 
-        let stream = discytdl(url, {
+        let stream = ytdl(url, {
     filter: "audioonly",
     opusEncoded: true,
-    encoderArgs: ['-af', 'rubberband=pitch=0.8'] });
+    encoderArgs: ['-af', param] });
 
     markedchannel.join()
     .then(connection => {  
@@ -333,91 +386,6 @@ ijin lewat ndan
       
         
     }
-
-    async function HighPitch(params) {
-
-        const markedchannel = message.member.voice.channel;
-       const title = args.join();
-    let searchResult;
-    let url;
-       try {
-
-         searchResult = await searcher.search(title);
-         url = searchResult.first.url;
-        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in high pitch`);
-
-       } catch (error) {
-           message.channel.send('ad yg salah mencari videonya bre')
-       }
-       
-
-       try {
-
-        let stream = discytdl(url, {
-    filter: "audioonly",
-    opusEncoded: true,
-    encoderArgs: ['-af', 'rubberband=pitch=1.2'] });
-
-    markedchannel.join()
-    .then(connection => {  
-        let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
-    })
-   
-
-        
-    } catch (error) {
-        markedchannel.leave();
-        message.channel.send('ada yg salah saat memutar video sepertinya bre')
-        console.log(error);
-        return   
-    }
-
-      
-        
-    }
-
-    async function Reverse(params) {
-
-        const markedchannel = message.member.voice.channel;
-       const title = args.join();
-    let searchResult;
-    let url;
-       try {
-
-         searchResult = await searcher.search(title);
-         url = searchResult.first.url;
-        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in reverse`);
-
-       } catch (error) {
-           message.channel.send('ad yg salah mencari videonya bre')
-       }
-       
-
-       try {
-
-        let stream = discytdl(url, {
-    filter: "audioonly",
-    opusEncoded: true,
-    encoderArgs: ['-af', 'areverse'] });
-
-    markedchannel.join()
-    .then(connection => {  
-        let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
-    })
-   
-
-        
-    } catch (error) {
-        markedchannel.leave();
-        message.channel.send('ada yg salah saat memutar video sepertinya bre')
-        console.log(error);
-        return   
-    }
-
-      
-        
-    }
-
 
    }else message.channel.send('tolong masuk channel dulu ya bre')
        
@@ -426,6 +394,8 @@ ijin lewat ndan
     
     } else if(command.toLowerCase() === 'highpitch' || command.toLowerCase() === 'lowpitch')
       message.channel.send('tolong masukan judul ya bre')
+
+    
 
     if(command.toLowerCase() === 'ytsearch'){
         const title = args.join();
