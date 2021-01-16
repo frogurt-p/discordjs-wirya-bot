@@ -191,7 +191,6 @@ ijin lewat ndan
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        if (command.toLowerCase() === 'raung' && args ){
 
- 
         let connection;
         const markedchannel = message.guild.channels.cache
         .filter((filter) => filter.type === 'voice')
@@ -207,19 +206,27 @@ ijin lewat ndan
              
         
 
-            try {
-                connection.play(ytdl('https://www.youtube.com/watch?v=tkiFrI072f0', { filter: 'audioonly' , quality: 'highestaudio' }))
-                
-            } catch (error) {
-                markedchannel.leave();
-                message.channel.send('ada yg salah bre')
-                console.log(error);
-                return   
-            }
+         try {
+             message.channel.send('https://cdn.discordapp.com/attachments/426214215750254604/798992486251888720/IMG_20210114_020858.jpg');
+            let stream = discytdl("https://www.youtube.com/watch?v=tkiFrI072f0", {
+        filter: "audioonly",
+        opusEncoded: true,
+        encoderArgs: ['-af'] });
+
+        markedchannel.join()
+        .then(connection => {  
+            let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+        })
+       
+    
             
-          setTimeout(() => {
-              markedchannel.leave()
-          }, 18000);
+        } catch (error) {
+            markedchannel.leave();
+            message.channel.send('ada yg salah bre')
+            console.log(error);
+            return   
+        }
+      
         
           
     };
