@@ -366,7 +366,7 @@ async function LowPitch(){
 
        try {
 
-        let stream = ytdl(url, {
+        let stream = discytdl(url, {
     filter: "audioonly",
     opusEncoded: true,
     encoderArgs: ['-af', param] });
