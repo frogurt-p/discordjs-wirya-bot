@@ -166,7 +166,8 @@ ijin lewat ndan
 *nista
 *instaprofile
 *portal
-*lowpitch / highpitch /reverseaudio / ytsearch`)};
+*lowpitch / highpitch /reverseaudio / ytsearch
+*sethighpitch / setlowpitch`)};
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------       
         
        if ((command.toLowerCase() === 'nick' && args) && message.author.id === message.guild.ownerID){
