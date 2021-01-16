@@ -9,6 +9,8 @@ const ytdl = require('ytdl-core');
 const { YTSearcher } = require('ytsearcher');
 const searcher = new YTSearcher(apiKey);
 const discytdl = require('discord-ytdl-core');
+var floatHighPitch = 1.2;
+var floatLowPitch = 0.8;
 
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
 
