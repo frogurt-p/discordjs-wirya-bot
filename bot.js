@@ -207,11 +207,10 @@ ijin lewat ndan
         
 
          try {
-             message.channel.send('https://cdn.discordapp.com/attachments/426214215750254604/798992486251888720/IMG_20210114_020858.jpg');
             let stream = discytdl("https://www.youtube.com/watch?v=tkiFrI072f0", {
         filter: "audioonly",
         opusEncoded: true });
-
+        message.channel.send('https://cdn.discordapp.com/attachments/426214215750254604/798992486251888720/IMG_20210114_020858.jpg');
         markedchannel.join()
         .then(connection => {  
             let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
