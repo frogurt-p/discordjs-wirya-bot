@@ -331,12 +331,12 @@ async function LowPitch(){
             switch (command.toLowerCase()) {
                 case 'highpitch':
                     
-                    PlaySound(`rubberband=pitch=${floatHighPitch}`, 'high pitch')
+                    PlaySound(`rubberband=pitch=${floatHighPitch}`, 'high pitch', floatHighPitch )
                     break;
 
                 case 'lowpitch':
                    
-                    PlaySound(`rubberband=pitch=${floatLowPitch}`, 'low pitch')
+                    PlaySound(`rubberband=pitch=${floatLowPitch}`, 'low pitch' , floatLowPitch )
                     break;
 
                 case 'reverseaudio':
@@ -348,7 +348,7 @@ async function LowPitch(){
                     break;
             }
 
-    async function PlaySound(param , identifierJudul) {
+    async function PlaySound(param , identifierJudul, varPitch) {
 
         const markedchannel = message.member.voice.channel;
        const title = args.join();
@@ -358,7 +358,7 @@ async function LowPitch(){
 
          searchResult = await searcher.search(title);
          url = searchResult.first.url;
-        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in ${identifierJudul}`);
+        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in ${identifierJudul} by ${varPitch}`);
 
        } catch (error) {
            message.channel.send('ad yg salah mencari videonya bre')
