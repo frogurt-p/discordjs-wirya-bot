@@ -3,6 +3,7 @@ require('dotenv').config();
 const apiKey = process.env.API_KEY;
 const { Client, MessageAttachment, VoiceChannel, User, GuildMember, MessageEmbed, Guild } = require("discord.js");
 const guild = new Guild();
+var det = new Date();
 const client = new Client();
 const memberguild = new GuildMember();
 const ytdl = require('ytdl-core');
@@ -12,12 +13,26 @@ const discytdl = require('discord-ytdl-core');
 var floatHighPitch = 1.2;
 var floatLowPitch = 0.8;
 
+setInterval(() => {
+    det = new Date();
+    console.log(det.toLocaleTimeString());
+        
+    if(det.getDate() >= 23)
+    client.user.setActivity('aduh gw dah mau mati nih bre! apes aku!');
+    else
+    client.user.setActivity(`${25 - det.getDate()} hari sebelum gw mati nih bre!`)
+    
+}, 43200000);
+
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
 
 client.on('ready' ,() => {
 
- client.user.setActivity('toa,walkietalkie,strobo,*commands');
-
+    if(det.getDate() >= 23)
+    client.user.setActivity('aduh gw dah mau mati nih bre! apes aku!');
+    else
+     client.user.setActivity(`${25 - det.getDate()} hari sebelum gw mati nih bre!`);
+    
 });
 
 client.on("voiceStateUpdate", async (leaveState, joinState ) => {
