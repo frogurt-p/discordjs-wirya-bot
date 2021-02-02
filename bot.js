@@ -22,7 +22,7 @@ setInterval(() => {
     else
     client.user.setActivity(`${25 - det.getDate()} hari sebelum gw mati nih bre!`)
     
-}, 43200000);
+}, 7200000);
 
 client.login(process.env.DISCORDJS_WIRYA_TOKEN); 
 
