@@ -247,6 +247,46 @@ ijin lewat ndan
           
     };
 
+    if (command.toLowerCase() === 'escort' && args ){
+
+        let connection;
+        const markedchannel = message.guild.channels.cache
+        .filter((filter) => filter.type === 'voice')
+        .find((filtered) => filtered.name.toLowerCase() === args.join(' ').toLowerCase());
+
+
+         try {
+            connection = await markedchannel.join();
+         } catch (error) {
+             message.channel.send('gk ada channelnya bre')
+             return
+         }
+             
+        
+
+         try {
+            let stream = discytdl("https://www.youtube.com/watch?v=cX6z1X1AcwU", {
+        filter: "audioonly",
+        opusEncoded: true });
+        message.channel.send('siap ndan laksanakan!');
+        markedchannel.join()
+        .then(connection => {  
+            let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+        })
+       
+    
+            
+        } catch (error) {
+            markedchannel.leave();
+            message.channel.send('ada yg salah bre')
+            console.log(error);
+            return   
+        }
+      
+        
+          
+    };
+
     if (command.toLowerCase() === 'tahantahan' && args ){
 
  
@@ -288,7 +328,7 @@ ijin lewat ndan
             
           
     };
-
+    
     if((command.toLowerCase() === 'sethighpitch' || command.toLowerCase() === 'setlowpitch') && args){
         switch (command.toLowerCase()) {
             case 'sethighpitch':
@@ -373,8 +413,10 @@ async function LowPitch(){
 
          searchResult = await searcher.search(title);
          url = searchResult.first.url;
+         if(identifierJudul === 'high pitch' || identifierJudul === 'low pitch')
         message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in ${identifierJudul} by ${varPitch}`);
-
+        else
+        message.channel.send(`Playing >> **${searchResult.first.title}** by **${searchResult.first.channelTitle}** in ${identifierJudul}`);
        } catch (error) {
            message.channel.send('ad yg salah mencari videonya bre')
        }
