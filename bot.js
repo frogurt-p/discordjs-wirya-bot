@@ -17,7 +17,7 @@ setInterval(() => {
     det = new Date();
     console.log(det.toLocaleTimeString());
         
-    if(det.getDate() >= 23)
+    if(det.getDate() === 18 || det.getDate > 18)
     client.user.setActivity('aduh gw dah mau mati nih bre! apes aku!');
     else
     client.user.setActivity(`${25 - det.getDate()} hari sebelum gw mati nih bre!`)
