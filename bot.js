@@ -182,6 +182,7 @@ ijin lewat ndan
 *instaprofile
 *portal
 *lowpitch / highpitch /reverseaudio / ytsearch
+*raung / escort / tahantahan / matiinlampu / ancam
 *sethighpitch / setlowpitch`)};
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------       
         
@@ -207,7 +208,7 @@ ijin lewat ndan
             
        }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       if (command.toLowerCase() === 'raung' && args ){
+       if ((command.toLowerCase() === 'raung' || command.toLowerCase() === 'escort' || command.toLowerCase() === 'ancam' || command.toLowerCase() === 'matiinlampu') && args ){
 
         let connection;
         const markedchannel = message.guild.channels.cache
@@ -221,71 +222,99 @@ ijin lewat ndan
              message.channel.send('gk ada channelnya bre')
              return
          }
-             
-        
 
-         try {
-            let stream = discytdl("https://www.youtube.com/watch?v=tkiFrI072f0", {
-        filter: "audioonly",
-        opusEncoded: true });
-        message.channel.send('https://cdn.discordapp.com/attachments/426214215750254604/798992486251888720/IMG_20210114_020858.jpg');
-        markedchannel.join()
-        .then(connection => {  
-            let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
-        })
-       
-    
+        switch (command.toLowerCase()) {
+            case 'raung':
+                PlayClip("https://www.youtube.com/watch?v=tkiFrI072f0", 
+                'https://cdn.discordapp.com/attachments/426214215750254604/798992486251888720/IMG_20210114_020858.jpg' )
+
+                break;
+
+            case 'escort':
+                PlayClip("https://www.youtube.com/watch?v=cX6z1X1AcwU", 'siap ndan laksanakan!')
             
-        } catch (error) {
-            markedchannel.leave();
-            message.channel.send('ada yg salah bre')
-            console.log(error);
-            return   
+                break;
+
+            case 'ancam':
+               PlayClip("https://www.youtube.com/watch?v=7zzs1-7UbpA" , 'lu jangan sampe gw bunuh lu ya!')
+                break;
+
+            case 'matiinlampu':
+                PlayClip("https://www.youtube.com/watch?v=h0wg5TLYfWQ" , 'peduli bumi dong bre')
+                    break;
+        
+            default:
+                break;
         }
-      
+             
+        async function PlayClip (url , callingcard ){
+           
+            try {
+                let stream = discytdl(url, {
+            filter: "audioonly",
+            opusEncoded: true });
+            message.channel.send(callingcard);
+            markedchannel.join()
+            .then(connection => {  
+                let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+            })
+           
+        
+                
+            } catch (error) {
+                markedchannel.leave();
+                message.channel.send('ada yg salah bre')
+                console.log(error);
+                return   
+            }
+             
+
+
+        }
+
         
           
     };
 
-    if (command.toLowerCase() === 'escort' && args ){
+    // if (command.toLowerCase() === 'escort' && args ){
 
-        let connection;
-        const markedchannel = message.guild.channels.cache
-        .filter((filter) => filter.type === 'voice')
-        .find((filtered) => filtered.name.toLowerCase() === args.join(' ').toLowerCase());
+    //     let connection;
+    //     const markedchannel = message.guild.channels.cache
+    //     .filter((filter) => filter.type === 'voice')
+    //     .find((filtered) => filtered.name.toLowerCase() === args.join(' ').toLowerCase());
 
 
-         try {
-            connection = await markedchannel.join();
-         } catch (error) {
-             message.channel.send('gk ada channelnya bre')
-             return
-         }
+    //      try {
+    //         connection = await markedchannel.join();
+    //      } catch (error) {
+    //          message.channel.send('gk ada channelnya bre')
+    //          return
+    //      }
              
         
 
-         try {
-            let stream = discytdl("https://www.youtube.com/watch?v=cX6z1X1AcwU", {
-        filter: "audioonly",
-        opusEncoded: true });
-        message.channel.send('siap ndan laksanakan!');
-        markedchannel.join()
-        .then(connection => {  
-            let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
-        })
+    //      try {
+    //         let stream = discytdl("https://www.youtube.com/watch?v=cX6z1X1AcwU", {
+    //     filter: "audioonly",
+    //     opusEncoded: true });
+    //     message.channel.send('siap ndan laksanakan!');
+    //     markedchannel.join()
+    //     .then(connection => {  
+    //         let dispatcher = connection.play(stream, {type: "opus"}).on('finish', ()=> markedchannel.leave()) 
+    //     })
        
     
             
-        } catch (error) {
-            markedchannel.leave();
-            message.channel.send('ada yg salah bre')
-            console.log(error);
-            return   
-        }
+    //     } catch (error) {
+    //         markedchannel.leave();
+    //         message.channel.send('ada yg salah bre')
+    //         console.log(error);
+    //         return   
+    //     }
       
         
           
-    };
+    // };
 
     if (command.toLowerCase() === 'tahantahan' && args ){
 
