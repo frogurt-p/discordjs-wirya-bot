@@ -357,6 +357,22 @@ ijin lewat ndan
             
           
     };
+
+    if ((command.toLowerCase() === 'jumbo' && args) ){
+ 
+        var emojiID = null;
+        const newargs = args.toString()
+        if(newargs.includes('>') && newargs.includes('<')){
+         const newerargs = newargs.lastIndexOf('>')
+         const calculation = newerargs - 18
+         emojiID = newargs.substring(calculation, newerargs )
+         message.channel.send(`https://cdn.discordapp.com/emojis/${emojiID}`)
+        }
+        else
+        message.reply('Sorry bre gk bisa itu emotnya')
+   
+      
+       }
     
     if((command.toLowerCase() === 'sethighpitch' || command.toLowerCase() === 'setlowpitch') && args){
         switch (command.toLowerCase()) {
