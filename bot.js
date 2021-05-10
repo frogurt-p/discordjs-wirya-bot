@@ -68,7 +68,19 @@ client.on("voiceStateUpdate", async (leaveState, joinState ) => {
 
 client.on('message', async (message) => {
 
-    const globalcommand = message.content.startsWith(prefix) && message.author.bot === false;
+    // const globalcommand = message.content.startsWith(prefix) && message.author.bot === false;
+    var globalcommand = null;
+    if(message.content.startsWith('*jumbo') ){
+
+    globalcommand = true
+
+
+    } else if(message.content.startsWith(prefix) && message.author.bot === false){
+
+        globalcommand = true
+       
+
+    }
 
     if (message.content.toLowerCase() === 'halo' && message.author.bot === false) {
 
@@ -358,7 +370,7 @@ ijin lewat ndan
           
     };
 
-    if ((command.toLowerCase() === 'jumbo' && args) ){
+    if ((command.toLowerCase() === 'jumbo' && args)  ){
  
         var emojiID = null;
         const newargs = args.toString()
@@ -369,7 +381,7 @@ ijin lewat ndan
          message.channel.send(`https://cdn.discordapp.com/emojis/${emojiID}`)
         }
         else
-        message.reply('Sorry bre gk bisa itu emotnya')
+        console.log('emote cannot be grabbed')
    
       
        }
