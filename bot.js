@@ -7,6 +7,7 @@ var det = new Date();
 const client = new Client();
 const memberguild = new GuildMember();
 const ytdl = require('ytdl-core');
+const gis = require('g-i-s');
 const { YTSearcher } = require('ytsearcher');
 const searcher = new YTSearcher(apiKey);
 const discytdl = require('discord-ytdl-core');
