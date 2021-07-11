@@ -650,48 +650,50 @@ async function LowPitch(){
      
             }
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    if ((command.toLowerCase() == 'foto' && args[0] )){
+ if ((command.toLowerCase() == 'foto' && args[0] )){
 
-        const filteredIndex = args.filter((value, index) =>{
-            return index >= 0
-        })
+    const filteredIndex = args.filter((value, index) =>{
+        return index >= 0
+    })
 
-        var photoFrame = new MessageEmbed()
-        .setTitle('PhotoGuan')
-        .setDescription(`ini fotonya bre untuk ${filteredIndex.join(' ')}`)
+    var photoFrame = new MessageEmbed()
+    .setTitle('PhotoGuan')
+    .setDescription(`ini fotonya bre untuk ${filteredIndex.join(' ')}`)
 
-        
-        gis(`${filteredIndex.join(' ')}`, gisResult);
-
-        function gisResult(err, logResult){
-        if(err){
-            console.log(err)
-            message.reply('sorry bre error searchnya')
-        }
-        
-        else{
-            var randomizedRes = logResult[Math.floor(Math.random()*logResult.length)]
-        try {
-
-            do {
-
-                randomizedRes = logResult[Math.floor(Math.random()*logResult.length) + 1]
-
-            } while (randomizedRes.url.endsWith('.jpg') || randomizedRes.url.endsWith('.png') == false);
-
-        } catch (error) {
-            message.reply('sorry bre coba ketik lagi soalnya error tadi')}
     
-        }
+    gis(`${filteredIndex.join(' ')}`, gisResult);
+
+    function gisResult(err, logResult){
+       if(err){
+        console.log(err)
+        message.reply('sorry bre error searchnya')
+       }
+       
+       else{
+        var randomizedRes = logResult[Math.floor(Math.random()*logResult.length)]
+    try {
         
-        // console.log(randomizedRes)
-        photoFrame.setImage(randomizedRes.url)
-        message.channel.send(photoFrame)
+        console.log(randomizedRes.url)
+        do {
 
-        }
+            randomizedRes = logResult[Math.floor(Math.random()*logResult.length) + 1]
+            photoFrame.setImage(randomizedRes.url)
+
+        } while (randomizedRes.url.endsWith('.jpg') || randomizedRes.url.endsWith('.png') == false);
+
+    } catch (error) {
+        console.log(error)}
+
+    }
+       
+     // console.log(randomizedRes)
+    
+       message.channel.send(photoFrame)
+
+    }
 
 
-        }
+    }
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------
              if ((command.toLowerCase() === 'createemoji' && args[0]) && message.attachments.find( image => image.size < 10000000)){
             const color1 = Math.random() * 255;
