@@ -17,6 +17,7 @@
     "dotenv": "^8.2.0",
     "ffmpeg": "0.0.4",
     "fs": "0.0.1-security",
+    "g-i-s": "^2.1.6",
     "latest": "^0.2.0",
     "opusscript": "0.0.7",
     "ytdl-core": "^4.8.2",

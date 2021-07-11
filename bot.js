@@ -624,6 +624,73 @@ async function LowPitch(){
      }
 
          }
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+         if ((command.toLowerCase() == 'portaltest' && args[0] && args[1])){
+        
+            const filteredIndex = args.filter((value, index) =>{
+                 return index >= 1
+             })
+                     const arizona = args[0];
+                     try {
+                         
+                         const  guildName = await client.guilds.cache.find(server => server.name.toLowerCase().startsWith(arizona.toLowerCase()));
+                         const targetChannel = await guildName.channels.cache.find( key => key.type === 'text' );
+                         // const targetChannel = await client.guilds.cache.first().channels.cache.find( key => key.name === 'general' );
+                         targetChannel.send(`${filteredIndex.join(' ')} -- sent from ${message.guild.name} by ${message.author} `);
+                         message.channel.send('berhasil mengirim msg');
+                         
+                             
+                     } catch (err) {
+                         message.channel.send('sorry bre ad yg salah');
+                         
+                     }
+             
+       
+     
+            }
+ //----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    if ((command.toLowerCase() == 'foto' && args[0] )){
+
+        const filteredIndex = args.filter((value, index) =>{
+            return index >= 0
+        })
+
+        var photoFrame = new MessageEmbed()
+        .setTitle('PhotoGuan')
+        .setDescription(`ini fotonya bre untuk ${filteredIndex.join(' ')}`)
+
+        
+        gis(`${filteredIndex.join(' ')}`, gisResult);
+
+        function gisResult(err, logResult){
+        if(err){
+            console.log(err)
+            message.reply('sorry bre error searchnya')
+        }
+        
+        else{
+            var randomizedRes = logResult[Math.floor(Math.random()*logResult.length)]
+        try {
+
+            do {
+
+                randomizedRes = logResult[Math.floor(Math.random()*logResult.length) + 1]
+
+            } while (randomizedRes.url.endsWith('.jpg') || randomizedRes.url.endsWith('.png') == false);
+
+        } catch (error) {
+            message.reply('sorry bre coba ketik lagi soalnya error tadi')}
+    
+        }
+        
+        // console.log(randomizedRes)
+        photoFrame.setImage(randomizedRes.url)
+        message.channel.send(photoFrame)
+
+        }
+
+
+        }
  //----------------------------------------------------------------------------------------------------------------------------------------------------------------
              if ((command.toLowerCase() === 'createemoji' && args[0]) && message.attachments.find( image => image.size < 10000000)){
             const color1 = Math.random() * 255;
